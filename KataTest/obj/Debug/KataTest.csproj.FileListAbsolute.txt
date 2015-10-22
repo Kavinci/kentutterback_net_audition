@@ -1,0 +1,5 @@
+C:\Projects\Kata\KataTest\bin\Debug\KataTest.dll
+C:\Projects\Kata\KataTest\bin\Debug\KataTest.pdb
+C:\Projects\Kata\KataTest\obj\Debug\KataTest.csprojResolveAssemblyReference.cache
+C:\Projects\Kata\KataTest\obj\Debug\KataTest.dll
+C:\Projects\Kata\KataTest\obj\Debug\KataTest.pdb
