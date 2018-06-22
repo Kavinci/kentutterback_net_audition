@@ -7,16 +7,20 @@ namespace Kata
 {
     public class GameLogic
     {
-        PlayerObject Player;
+        Player Player;
+        GameState GameState;
+        Cards Cards;
 
         public GameLogic()
         {
-            Player = new PlayerObject();
+            Cards = new Cards();
+            Player = new Player(Cards);
+            GameState = new GameState();
         }
 
         public void StartGame()
         {
-            Player.Shuffle();
+            
         }
     }
 }

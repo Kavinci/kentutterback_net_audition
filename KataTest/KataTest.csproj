@@ -53,8 +53,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="FirstRoundTests.cs" />
+    <Compile Include="CardTests.cs" />
+    <Compile Include="HealthTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ManaTests.cs" />
+    <Compile Include="GameStateTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Kata\Kata.csproj">
