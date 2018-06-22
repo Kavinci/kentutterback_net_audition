@@ -18,7 +18,7 @@ namespace Kata
             Mana = 0;
             Health = 30;
             Cards = new Cards();
-            LinkedList<int> Deck = new LinkedList<int>(Cards.Deck);
+            Deck = new LinkedList<int>(Cards.Deck);
             Shuffle();
             Hand = new LinkedList<int>();
         }
@@ -83,7 +83,6 @@ namespace Kata
                 ShuffledDeck.AddFirst(Deck.ElementAt(x));
                 Deck.Remove(Deck.ElementAt(x));
             }
-
             Deck.Clear();
             Deck = ShuffledDeck;
         }

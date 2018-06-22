@@ -6,7 +6,8 @@ namespace Kata
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(String.Join(",", args));
+            GameLogic Game = new GameLogic();
+            Game.StartGame();
         }
     }
 }
