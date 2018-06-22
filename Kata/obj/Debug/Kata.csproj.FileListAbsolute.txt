@@ -3,3 +3,9 @@ C:\Projects\Kata\Kata\bin\Debug\Kata.pdb
 C:\Projects\Kata\Kata\obj\Debug\Kata.csprojResolveAssemblyReference.cache
 C:\Projects\Kata\Kata\obj\Debug\Kata.exe
 C:\Projects\Kata\Kata\obj\Debug\Kata.pdb
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\Kata\bin\Debug\Kata.exe
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\Kata\bin\Debug\Kata.pdb
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\Kata\obj\Debug\Kata.csprojAssemblyReference.cache
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\Kata\obj\Debug\Kata.csproj.CoreCompileInputs.cache
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\Kata\obj\Debug\Kata.exe
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\Kata\obj\Debug\Kata.pdb

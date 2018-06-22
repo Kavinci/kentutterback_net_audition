@@ -3,3 +3,11 @@ C:\Projects\Kata\KataTest\bin\Debug\KataTest.pdb
 C:\Projects\Kata\KataTest\obj\Debug\KataTest.csprojResolveAssemblyReference.cache
 C:\Projects\Kata\KataTest\obj\Debug\KataTest.dll
 C:\Projects\Kata\KataTest\obj\Debug\KataTest.pdb
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\KataTest\bin\Debug\KataTest.dll
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\KataTest\bin\Debug\KataTest.pdb
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\KataTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\KataTest\obj\Debug\KataTest.csprojAssemblyReference.cache
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\KataTest\obj\Debug\KataTest.csproj.CoreCompileInputs.cache
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\KataTest\obj\Debug\KataTest.csproj.CopyComplete
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\KataTest\obj\Debug\KataTest.dll
+C:\Users\Kent\Desktop\ComResource Materials\kentutterback_net_audition\KataTest\obj\Debug\KataTest.pdb
