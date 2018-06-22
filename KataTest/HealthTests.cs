@@ -7,7 +7,7 @@ namespace KataTest
     [TestClass]
     public class HealthTests
     {
-        Player Player = new Player(new Cards());
+        Player Player = new Player();
 
         [TestMethod]
         public void GetHealth_ExpectedBehaviour()

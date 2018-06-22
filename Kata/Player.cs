@@ -7,6 +7,7 @@ namespace Kata
 {
     public class Player
     {
+        Cards Cards;
         private int ManaSlotMax { get; set; }
         private int ManaSlots { get; set; }
         private int Mana { get; set; }
@@ -15,13 +16,14 @@ namespace Kata
         private LinkedList<int> Deck { get; set; }
         private LinkedList<int> Hand { get; set; }
 
-        public Player(Cards Cards)
+        public Player()
         {
             ManaSlotMax = 10;
             ManaSlots = 0;
             Mana = ManaSlots;
             HealthSlotMax = 30;
             Health = HealthSlotMax;
+            Cards = new Cards();
             Deck = new LinkedList<int>(Cards.Deck);
             ShuffleDeck();
             Hand = new LinkedList<int>();
