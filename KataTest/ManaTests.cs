@@ -7,38 +7,48 @@ namespace KataTest
     [TestClass]
     public class ManaTests
     {
-        Player Player = new Player();
+        Player Player;
+
+        [TestInitialize()]
+        public void InitializeForTesting()
+        {
+            Player = new Player();
+        }
 
         [TestMethod]
-        public void AddMana_ExpectedIncrease()
+        public void AddMana_IncreasesMana_OnCall()
         {
-            int ExpectedMana = 0;
-            for(int i = 10; i >= 0; i--)
-            {
-                Assert.AreEqual(ExpectedMana, Player.GetMana());
-                Player.AddMana(1);
-                ExpectedMana++;
-            }
-            Player.UseMana(10);
+            int ExpectedMana = 2;
+
+            Player.AddMana(2);
+            Assert.AreEqual(ExpectedMana, Player.GetMana());
         }
 
         [TestMethod]
         public void CanUseMana_ExpectedBehaviour()
         {
             int ExpectedMana = 0;
+
             Assert.IsTrue(Player.CanUseMana(ExpectedMana));
         }
 
         [TestMethod]
-        public void AddManaSlots_ExpectedBehaviour()
+        public void AddManaSlots_Adds1Mana_OnCall()
         {
-            //0-10 Check
-            int ExpectedManaSlots = 0;
+            int ExpectedManaSlots = 1;
+
+            Player.AddManaSlot();
+            Assert.AreEqual(ExpectedManaSlots, Player.GetManaSlots());
+        }
+
+        [TestMethod]
+        public void AddManaSlots_DoesNotExceed10Slots_OnCall()
+        {
+            //0-10 slots
+            int ExpectedManaSlots = 10;
             for (int i = 10; i >= 0; i--)
             {
-                Assert.AreEqual(ExpectedManaSlots, Player.GetManaSlots());
                 Player.AddManaSlot();
-                ExpectedManaSlots++;
             }
             //Over 10 slot check
             Player.AddManaSlot();

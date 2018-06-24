@@ -36,7 +36,7 @@ namespace Kata
 
         public void AddManaSlot()
         {
-            if (ManaSlots <= ManaSlotMax)
+            if (ManaSlots < ManaSlotMax)
             {
                 ManaSlots += 1;
             }

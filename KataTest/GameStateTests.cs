@@ -7,19 +7,30 @@ namespace KataTest
     [TestClass]
     public class GameStateTests
     {
-        GameState GameState = new GameState();
+        GameState GameState;
+
+        [TestInitialize()]
+        public void InitializeForTesting()
+        {
+            GameState = new GameState();
+        }
 
         [TestMethod]
-        public void GetRound_returns_CurrentRound_after_NextRound()
+        public void NextRound_IncrementsRound()
         {
-            int ExpectedRound = 0;
-            //20 round test
-            for(int i = 20; i >= 0; i--)
-            {
-                Assert.IsTrue(ExpectedRound == GameState.GetRound());
-                ExpectedRound++;
-                GameState.NextRound();
-            }
+            int InitialRound = 0;
+            int CurrentRound = GameState.GetRound();
+
+            GameState.NextRound();
+            Assert.AreNotEqual(InitialRound, GameState.GetRound()); 
+        }
+
+        [TestMethod]
+        public void SwitchActivePlayer_TogglesActivePlayer_onCall()
+        {
+            GameState.ActivePlayerOptions ActivePlayer = GameState.GetActivePlayer();
+            GameState.SwitchActivePlayer();
+            Assert.AreNotEqual(ActivePlayer, GameState.GetActivePlayer());
         }
     }
 }

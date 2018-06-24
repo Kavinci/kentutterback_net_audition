@@ -7,7 +7,13 @@ namespace KataTest
     [TestClass]
     public class HealthTests
     {
-        Player Player = new Player();
+        Player Player;
+
+        [TestInitialize()]
+        public void InitializeForTesting()
+        {
+            Player = new Player();
+        }
 
         [TestMethod]
         public void GetHealth_ExpectedBehaviour()

@@ -9,10 +9,24 @@ namespace KataTest
     {
         GameLogic Game = new GameLogic();
 
+        [TestInitialize()]
+        public void InitializeForTesting()
+        {
+            Game = new GameLogic();
+        }
+
         [TestMethod]
         public void PlayerTurn_ExpectedBehaviour()
         {
 
+        }
+
+        [TestMethod]
+        public void PlayCard_ExpectedBehaviour()
+        {
+            int Mana = Game.Player.GetHand().First.Value;
+            Game.PlayCard(Mana);
+            Assert.IsFalse(Game.Player.CanPlayCard(Mana));
         }
 
         [TestMethod]
@@ -24,15 +38,15 @@ namespace KataTest
             int ExpectedDeckCount = 17;
 
             Game.Preparation();
-            Assert.AreEqual(ExpectedHealth, Game.Player.GetHealth(), "Health");
-            Assert.AreEqual(ExpectedMana, Game.Player.GetMana(), "Mana");
-            Assert.AreEqual(ExpectedHandCount, Game.Player.GetHand().Count, "Hand Count"); 
-            Assert.AreEqual(ExpectedDeckCount, Game.Player.GetDeck().Count, "Deck Count");
+            Assert.AreEqual(ExpectedHealth, Game.Player.GetHealth(), "Player Health");
+            Assert.AreEqual(ExpectedMana, Game.Player.GetMana(), "Player Mana");
+            Assert.AreEqual(ExpectedHandCount, Game.Player.GetHand().Count, "Player Hand Count"); 
+            Assert.AreEqual(ExpectedDeckCount, Game.Player.GetDeck().Count, "Player Deck Count");
 
-            Assert.AreEqual(ExpectedHealth, Game.Computer.GetHealth(), "Health");
-            Assert.AreEqual(ExpectedMana, Game.Computer.GetMana(), "Mana");
-            Assert.AreEqual(ExpectedHandCount, Game.Computer.GetHand().Count, "Hand Count");
-            Assert.AreEqual(ExpectedDeckCount, Game.Computer.GetDeck().Count, "Deck Count");
+            Assert.AreEqual(ExpectedHealth, Game.Computer.GetHealth(), "Computer Health");
+            Assert.AreEqual(ExpectedMana, Game.Computer.GetMana(), "Computer Mana");
+            Assert.AreEqual(ExpectedHandCount, Game.Computer.GetHand().Count, "Computer Hand Count");
+            Assert.AreEqual(ExpectedDeckCount, Game.Computer.GetDeck().Count, "Computer Deck Count");
         }
 
         [TestMethod]

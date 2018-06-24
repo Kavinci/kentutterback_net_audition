@@ -56,6 +56,17 @@ namespace Kata
             }
         }
 
+        public int Decision()
+        {
+            int ManaCost = new int();
+            return ManaCost;
+        }
+
+        public void PlayCard(int ManaCost)
+        {
+
+        }
+
         public bool IsGameOver()
         {
             if (Player.IsHealthDepleted() || Computer.IsHealthDepleted()) return true;

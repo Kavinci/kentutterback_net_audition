@@ -7,7 +7,13 @@ namespace KataTest
     [TestClass]
     public class CardTests
     {
-        Player Player = new Player();
+        Player Player;
+
+        [TestInitialize()]
+        public void InitializeForTesting()
+        {
+            Player = new Player();
+        }
 
         [TestMethod]
         public void DeckContents_hasOneOfEachCard_on_FirstInitialization()
