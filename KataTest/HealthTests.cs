@@ -23,7 +23,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void SubtractHealth_from_FullHealth()
+        public void SubtractHealth_from_FullInitialHealth()
         {
             int initHealth = 26;
             Player.SubtractHealth(4);
@@ -31,7 +31,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void AddHealth_to_MediumHealth_shouldNot_Increase_MoreThan_MaxHealth()
+        public void AddHealth_to_lessThan_FullHealth_shouldNot_Increase_MoreThan_MaxHealth()
         {
             int initHealth = 30;
             Player.SubtractHealth(7);
@@ -40,7 +40,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void AddHealth_to_MediumHealth_should_Increase()
+        public void AddHealth_to_lessThan_FullHealth_should_Increase()
         {
             int expectedHealth = 28;
             Player.SubtractHealth(7);

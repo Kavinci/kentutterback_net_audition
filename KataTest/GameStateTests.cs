@@ -18,11 +18,11 @@ namespace KataTest
         [TestMethod]
         public void NextRound_IncrementsRound_onCall()
         {
-            int InitialRound = 0;
+            int ExpectedRound = 1;
             int CurrentRound = GameState.GetRound();
 
             GameState.NextRound();
-            Assert.AreNotEqual(InitialRound, GameState.GetRound()); 
+            Assert.AreEqual(ExpectedRound, GameState.GetRound()); 
         }
 
         [TestMethod]

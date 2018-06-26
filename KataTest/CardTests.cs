@@ -26,34 +26,21 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void DeckCountHasOneLess_after_DrawOneCard()
+        public void DeckCountHasOneLess_after_RemoveTopCardFromDeck()
         {
-            for (int i = Player.GetDeck().Count; i > 0; i--)
-            {
-                int inCount = Player.GetDeck().Count;
-                Player.RemoveTopCardFromDeck();
-                Assert.IsTrue(Player.GetDeck().Count < inCount);
-            }
+            int initCount = Player.GetDeck().Count;
+            Player.RemoveTopCardFromDeck();
+            Assert.IsTrue(Player.GetDeck().Count < initCount);
         }
 
         [TestMethod]
-        public void Output_of_CanDrawACardFromDeck_with_CardsInDeck()
+        public void CanDrawACardFromDeck_returnsTrue_when_CardsExistInDeck()
         {
             Assert.IsTrue(Player.CanDrawACardFromDeck());
         }
 
         [TestMethod]
-        public void Output_of_CanDrawACardFromDeck_without_CardsInDeck()
-        {
-            for(int i = Player.GetDeck().Count; i > 0; i--)
-            {
-                Player.RemoveTopCardFromDeck();
-            }
-            Assert.IsFalse(Player.CanDrawACardFromDeck());
-        }
-
-        [TestMethod]
-        public void WhenPlayersHandHasFiveCards_AddTopCardFromDeckToHand_DrawsACardFromTheDeckAndDoesNotAddToHand()
+        public void PlayersHand_cannotExceedFiveCards()
         {
             for (int i = Player.GetDeck().Count; i >= 1; i--)
             {
@@ -79,23 +66,6 @@ namespace KataTest
                 Player.RemoveTopCardFromDeck();
             }
             Assert.IsTrue(Player.CanPlayCard(Player.GetHand().First.Value));
-        }
-
-        [TestMethod]
-        public void PlayACard_from_Hand_RemovesCard_from_Hand_ifCardExists()
-        {
-            int initHandCount = Player.GetHand().Count;
-            for (int i = 3; i >= 0; i--)
-            {
-                Player.AddTopCardFromDeckToHand();
-                Player.RemoveTopCardFromDeck();
-            }
-
-            if (Player.CanPlayCard(Player.GetHand().First.Value))
-            {
-                Player.RemoveCardFromHand(Player.GetHand().First.Value);
-            }
-            Assert.AreNotEqual(initHandCount, Player.GetHand().Count);
         }
     }
 }
