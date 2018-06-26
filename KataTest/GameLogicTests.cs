@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Kata;
 
@@ -16,20 +18,6 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void PlayerTurn_ExpectedBehaviour()
-        {
-
-        }
-
-        [TestMethod]
-        public void PlayCard_ExpectedBehaviour()
-        {
-            int Mana = Game.Player.GetHand().First.Value;
-            Game.PlayCard(Mana);
-            Assert.IsFalse(Game.Player.CanPlayCard(Mana));
-        }
-
-        [TestMethod]
         public void Preparation_ExpectedBehaviour()
         {
             int ExpectedHealth = 30;
@@ -40,7 +28,7 @@ namespace KataTest
             Game.Preparation();
             Assert.AreEqual(ExpectedHealth, Game.Player.GetHealth(), "Player Health");
             Assert.AreEqual(ExpectedMana, Game.Player.GetMana(), "Player Mana");
-            Assert.AreEqual(ExpectedHandCount, Game.Player.GetHand().Count, "Player Hand Count"); 
+            Assert.AreEqual(ExpectedHandCount, Game.Player.GetHand().Count, "Player Hand Count");
             Assert.AreEqual(ExpectedDeckCount, Game.Player.GetDeck().Count, "Player Deck Count");
 
             Assert.AreEqual(ExpectedHealth, Game.Computer.GetHealth(), "Computer Health");
@@ -50,14 +38,18 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void BleedingSpecialRules_ExpectedBehaviour()
+        public void PlayCard_ExpectedBehaviour()
         {
-            Game.Player.AddHealth(30);
-            do
+            Game.Preparation();
+            int Mana = Game.Player.GetHand().First.Value;
+            LinkedList<int> CurrentHand = Game.Player.GetHand();
+
+            for (int i = CurrentHand.Count; i > 0; i--)
             {
-                Game.Player.RemoveTopCardFromDeck();
-            } while (Game.Player.GetDeck().Count > 0);
-            Assert.IsTrue(Game.SpecialRuleBleeding());
+                Game.PlayCard(Mana, Game.GameState.GetActivePlayer());
+            }
+
+            Assert.IsFalse(Game.Player.CanPlayCard(Mana));
         }
 
         [TestMethod]

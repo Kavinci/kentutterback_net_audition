@@ -42,18 +42,13 @@ namespace Kata
             ReadMemory = ReadBuffer;
             ReadBuffer = "";
             ReadBuffer = Console.ReadKey().KeyChar.ToString().ToUpper();
+            Console.WriteLine("\r\n");
         }
 
         public void Clear()
         {
             Console.Clear();
             WriteBuffer = WriteMemory;
-            Render();
-        }
-
-        public void Restate(string prompt)
-        {
-            WriteBuffer = prompt + "\r\n" + WriteMemory;
             Render();
         }
 
