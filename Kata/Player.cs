@@ -75,7 +75,7 @@ namespace Kata
         {
             if (Health < HealthSlotMax && Health + NumOfHP < HealthSlotMax)
             {
-                Health = NumOfHP;
+                Health += NumOfHP;
             }
             else if (Health < HealthSlotMax && Health + NumOfHP > HealthSlotMax)
             {

@@ -25,7 +25,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void CanUseMana_ExpectedBehaviour()
+        public void CanUseMana_returns_True_when_RequestedManaIsAvailable()
         {
             int ExpectedMana = 0;
 
@@ -33,7 +33,15 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void AddManaSlots_Adds1Mana_OnCall()
+        public void CanUseMana_returns_False_when_RequestedManaIsNotAvailable()
+        {
+            int ExpectedMana = 2;
+
+            Assert.IsFalse(Player.CanUseMana(ExpectedMana));
+        }
+
+        [TestMethod]
+        public void AddManaSlots_AddsOneManaSlot_OnCall()
         {
             int ExpectedManaSlots = 1;
 
@@ -42,7 +50,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void AddManaSlots_DoesNotExceed10Slots_OnCall()
+        public void AddManaSlots_DoesNotExceedTenSlots_when_CalledMoreThanTenTimes()
         {
             //0-10 slots
             int ExpectedManaSlots = 10;
@@ -56,7 +64,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void RefillMana_ExpectedBehaviour()
+        public void RefillMana_RefillsMana_upTo_ManaSlots_onCall()
         {
             Player.RefillMana();
             Assert.AreEqual(Player.GetManaSlots(), Player.GetMana());

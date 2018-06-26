@@ -18,7 +18,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void Preparation_ExpectedBehaviour()
+        public void Preparation_SetsAllInitialStats_forPlayer_onCall()
         {
             int ExpectedHealth = 30;
             int ExpectedMana = 1;
@@ -30,7 +30,17 @@ namespace KataTest
             Assert.AreEqual(ExpectedMana, Game.Player.GetMana(), "Player Mana");
             Assert.AreEqual(ExpectedHandCount, Game.Player.GetHand().Count, "Player Hand Count");
             Assert.AreEqual(ExpectedDeckCount, Game.Player.GetDeck().Count, "Player Deck Count");
+        }
 
+        [TestMethod]
+        public void Preparation_SetsAllInitialStats_forComputer_onCall()
+        {
+            int ExpectedHealth = 30;
+            int ExpectedMana = 0;
+            int ExpectedHandCount = 2;
+            int ExpectedDeckCount = 18;
+
+            Game.Preparation();
             Assert.AreEqual(ExpectedHealth, Game.Computer.GetHealth(), "Computer Health");
             Assert.AreEqual(ExpectedMana, Game.Computer.GetMana(), "Computer Mana");
             Assert.AreEqual(ExpectedHandCount, Game.Computer.GetHand().Count, "Computer Hand Count");
@@ -38,27 +48,13 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void PlayCard_ExpectedBehaviour()
-        {
-            Game.Preparation();
-            int Mana = Game.Player.GetHand().First.Value;
-            LinkedList<int> CurrentHand = Game.Player.GetHand();
-
-            for (int i = CurrentHand.Count; i > 0; i--)
-            {
-                Game.PlayCard(Mana, Game.GameState.GetActivePlayer());
-            }
-
-            Assert.IsFalse(Game.Player.CanPlayCard(Mana));
-        }
-
-        [TestMethod]
-        public void IsGameOver_ExpectedBehaviour()
+        public void IsGameOver_returns_True_when_Health_IsLessThanOrEqualTo_Zero()
         {
             Game.Player.SubtractHealth(30);
             Assert.IsTrue(Game.IsGameOver());
 
-            Game.Computer.SubtractHealth(30);
+            Game.Player.AddHealth(10);
+            Game.Computer.SubtractHealth(32);
             Assert.IsTrue(Game.IsGameOver());
         }
     }

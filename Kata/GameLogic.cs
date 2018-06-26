@@ -84,17 +84,15 @@ namespace Kata
             }
             else
             {
-                if(Player.GetHealth() == 0)
+                if(Player.GetHealth() <= 0)
                 {
-                    CIO.WriteToBuffer("Computer Wins! \r\n Good Game Player!");
+                    CIO.WriteToBuffer("Computer Wins!" + "\r\n" + "Good Game Player!");
                     CIO.Render();
-                    Console.ReadKey();
                 }
-                if (Computer.GetHealth() == 0)
+                if (Computer.GetHealth() <= 0)
                 {
                     CIO.WriteToBuffer("Congrats, You Win!");
                     CIO.Render();
-                    Console.ReadKey();
                 }
             }
         }
@@ -113,9 +111,7 @@ namespace Kata
             }
 
             //Computer
-            i = 2;
-            Computer.AddManaSlot();
-            Computer.RefillMana();
+            i = 1;
             while (i >= 0)
             {
                 Computer.AddTopCardFromDeckToHand();
@@ -133,7 +129,7 @@ namespace Kata
                     ManaCost = Present();
                     break;
                 case GameState.ActivePlayerOptions.Computer:
-                    ManaCost = Computer.Decide();
+                    ManaCost = Computer.Decide(CIO);
                     break;
             }
             return ManaCost;
@@ -154,7 +150,7 @@ namespace Kata
                 {
                         Options += choices[i] + ": " + Player.GetHand().ElementAt(i).ToString() + "MP ";
                 }
-                Options += "Y: Skip Turn";
+                Options += "Y: End Turn";
                 Options += "\r\n" + "Your Stats: " + Player.GetHealth().ToString() + "HP " + Player.GetMana().ToString() + "MP to spend.";
                 Options += "\r\n" + "Computer Stats: " + Computer.GetHealth().ToString() + "HP";
                 CIO.WriteToBuffer(Options);
@@ -164,42 +160,86 @@ namespace Kata
                 switch (CIO.Input)
                 {
                     case "Q":
-                        ManaCost = Player.GetHand().ElementAt(0);
+                        if (Player.GetHand().Count() >= 1)
+                        {
+                            ManaCost = Player.GetHand().ElementAt(0);
+                        }
+                        else
+                        {
+                            CIO.WriteToBuffer("That is not a valid option");
+                            CIO.Render();
+                            ManaCost = Present();
+                        }
                         break;
                     case "W":
-                        ManaCost = Player.GetHand().ElementAt(1);
+                        if (Player.GetHand().Count() >= 2)
+                        {
+                            ManaCost = Player.GetHand().ElementAt(1);
+                        }
+                        else
+                        {
+                            CIO.WriteToBuffer("That is not a valid option");
+                            CIO.Render();
+                            ManaCost = Present();
+                        }
                         break;
                     case "E":
-                        ManaCost = Player.GetHand().ElementAt(2);
+                        if (Player.GetHand().Count() >= 3)
+                        {
+                            ManaCost = Player.GetHand().ElementAt(2);
+                        }
+                        else
+                        {
+                            CIO.WriteToBuffer("That is not a valid option");
+                            CIO.Render();
+                            ManaCost = Present();
+                        }
                         break;
                     case "R":
-                        ManaCost = Player.GetHand().ElementAt(3);
+                        if (Player.GetHand().Count() >= 4)
+                        {
+                            ManaCost = Player.GetHand().ElementAt(3);
+                        }
+                        else
+                        {
+                            CIO.WriteToBuffer("That is not a valid option");
+                            CIO.Render();
+                            ManaCost = Present();
+                        }
                         break;
                     case "T":
-                        ManaCost = Player.GetHand().ElementAt(4);
+                        if (Player.GetHand().Count() == 5)
+                        {
+                            ManaCost = Player.GetHand().ElementAt(4);
+                        }
+                        else
+                        {
+                            CIO.WriteToBuffer("That is not a valid option");
+                            CIO.Render();
+                            ManaCost = Present();
+                        }
                         break;
                     case "Y":
                         ManaCost = -1;
                         break;
                     case "C":
                         CIO.Clear();
-                        Present();
+                        ManaCost = Present();
                         break;
                     case "Z":
                         CIO.Exit();
-                        Present();
                         break;
                     default:
                         CIO.WriteToBuffer("That is not a valid option");
                         CIO.Render();
-                        Present();
+                        ManaCost = Present();
                         break;
                 }
                 if (!Player.CanUseMana(ManaCost))
                 {
                     CIO.WriteToBuffer("You do not have enough Mana for that card");
                     CIO.Render();
-                    Present();
+                    ManaCost = Present();
                 }
             }
             return ManaCost;
@@ -218,6 +258,8 @@ namespace Kata
                     Computer.RemoveCardFromHand(ManaCost);
                     Computer.UseMana(ManaCost);
                     Player.SubtractHealth(ManaCost);
+                    CIO.WriteToBuffer("Computer plays " + ManaCost + "MP");
+                    CIO.Render();
                     break;
             }
         }

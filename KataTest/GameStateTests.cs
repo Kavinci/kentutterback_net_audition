@@ -16,7 +16,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void NextRound_IncrementsRound()
+        public void NextRound_IncrementsRound_onCall()
         {
             int InitialRound = 0;
             int CurrentRound = GameState.GetRound();

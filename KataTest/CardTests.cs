@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using System.Collections.Generic;
 using Kata;
 
@@ -21,12 +22,7 @@ namespace KataTest
             LinkedList<int> Deck = Player.GetDeck();
 
             int[] ExpectedDeck = { 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8 };
-
-            for (int i = Deck.Count; i > 0; i--)
-            {
-                Assert.IsTrue(Deck.Contains(ExpectedDeck[i - 1]));
-                Deck.Remove(ExpectedDeck[i - 1]);
-            }
+            Assert.IsTrue(ExpectedDeck.All(Deck.Contains));
         }
 
         [TestMethod]
@@ -41,13 +37,23 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void Output_of_CanDrawACardFromDeck()
+        public void Output_of_CanDrawACardFromDeck_with_CardsInDeck()
         {
             Assert.IsTrue(Player.CanDrawACardFromDeck());
         }
 
         [TestMethod]
-        public void HandCount_never_Exceeds5Cards()
+        public void Output_of_CanDrawACardFromDeck_without_CardsInDeck()
+        {
+            for(int i = Player.GetDeck().Count; i > 0; i--)
+            {
+                Player.RemoveTopCardFromDeck();
+            }
+            Assert.IsFalse(Player.CanDrawACardFromDeck());
+        }
+
+        [TestMethod]
+        public void WhenPlayersHandHasFiveCards_AddTopCardFromDeckToHand_DrawsACardFromTheDeckAndDoesNotAddToHand()
         {
             for (int i = Player.GetDeck().Count; i >= 1; i--)
             {
@@ -59,12 +65,12 @@ namespace KataTest
                     }
                     Player.RemoveTopCardFromDeck();
                 }
-                Assert.IsTrue(Player.GetHand().Count <= 5 && Player.GetHand().Count >= 0);
             }
+            Assert.IsTrue(Player.GetHand().Count <= 5);
         }
 
         [TestMethod]
-        public void Output_of_CanPlayACardFromHand()
+        public void CanPlayACardFromHand_returns_True_when_CardExists_in_Hand()
         {
             //Build Hand
             for (int i = 3; i >= 0; i--)
@@ -76,7 +82,7 @@ namespace KataTest
         }
 
         [TestMethod]
-        public void PlayACard_from_Hand()
+        public void PlayACard_from_Hand_RemovesCard_from_Hand_ifCardExists()
         {
             int initHandCount = Player.GetHand().Count;
             for (int i = 3; i >= 0; i--)
